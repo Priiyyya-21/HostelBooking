@@ -460,3 +460,41 @@ void hostel ::bill_generate()
         }
     }
 }
+void hostel ::edit_menu()
+{
+
+    int choice;
+    do
+    {
+        system("cls");
+        cout << "\n\t\t****************************************************************************************************************************************";
+        cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+        cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+        cout << "\n=================================================== EDIT MENU: =========================================================\n\n";
+        cout << "\n\n 1.Modify Student Record.";
+        cout << "\n 2.delete Student Room.";
+        cout << "\n 3.Go to Main menu .";
+        cout << "\n\n Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            modify();
+            break;
+
+        case 2:
+            delete_room();
+            break;
+
+        case 3:
+            main_menu();
+            break;
+        default:
+        {
+            cout << "\n Wrong Choice.....!!";
+            cout << "\n Press any key to continue....!!!";
+            getch();
+        }
+        }
+    } while (choice != 3);
+}
