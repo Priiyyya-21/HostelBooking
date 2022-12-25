@@ -178,3 +178,125 @@ top:
         fout.close();
     }
 }
+
+
+
+
+void hostel ::search_bar()
+{
+    system("cls");
+    int opt;
+    do
+    {
+        system("cls");
+        cout << "\n\t\t****************************************************************************************************************************************";
+        cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+        cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+        cout << "\n==================================================== * SEARCH MENU * ===================================================";
+        cout << "\n\n 1.Search details by roll no.";
+        cout << "\n 2.Search details by room no.";
+        cout << "\n 3.Go to Main menu .";
+        cout << "\n\n Enter your choice: ";
+        cin >> opt;
+        switch (opt)
+        {
+        case 1:
+            roll_search();
+            break;
+
+        case 2:
+            search_roomno();
+            break;
+
+        case 3:
+            main_menu();
+            break;
+        default:
+        {
+            cout << "\n Wrong Choice.....!!";
+            cout << "\n Press any key to continue....!!!";
+            getch();
+        }
+        }
+    } while (opt != 3);
+}
+
+void hostel::search_roomno()
+{
+    int r, flag = 0;
+    ifstream fin("Record.dat", ios::in);
+    system("cls");
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+    cout << "\n==================================================== * SEARCH MENU * ===================================================";
+    cout << "\n\n Enter room no.to get the student`s details :- ";
+    cin >> r;
+
+    while (!fin.eof())
+    {
+        fin.read((char *)this, sizeof(hostel));
+        if (room_no == r)
+        {
+            cout << "\n Student Details";
+            cout << "\n ---------------";
+            cout << "\n\n Room no: " << room_no;
+            cout << "\n  Roll Number : " << roll_no;
+            cout << "\n Name: " << name;
+            cout << "\n Address: " << address;
+            cout << "\n Semester: " << semester;
+            cout << "\n Branch: " << branch;
+            cout << "\n Course: " << course;
+            cout << "\n mobile_no number: " << mobile_no;
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 0)
+    {
+        cout << "\n Sorry Room you entered found vacant....!!";
+    }
+
+    cout << "\n\n Press any key to continue....!!";
+    getch();
+    fin.close();
+}
+
+void hostel ::roll_search()
+{
+    int ur, u, flag = 0, temp = 0;
+    ifstream fin("Record.dat", ios::in);
+    system("cls");
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+    cout << "\n\t\t========================================================== * SEARCH MENU * =============================================================";
+num:
+    cout << "\n\n Enter roll no.to get the student`s details :- ";
+    cin >> ur;
+    while (!fin.eof())
+    {
+        fin.read((char *)this, sizeof(hostel));
+        if (roll_no == ur)
+        {
+            cout << "\n Student Details";
+            cout << "\n ---------------";
+            cout << "\n\n Room no: " << room_no;
+            cout << "\n Name: " << name;
+            cout << "\n Address: " << address;
+            cout << "\n Roll Number : " << roll_no;
+            cout << "\n Semester: " << semester;
+            cout << "\n Branch: " << branch;
+            cout << "\n Course: " << course;
+            flag = 1;
+            break;
+        }
+        else if (flag == 0)
+        {
+            cout << "\n Sorry Room not found....!!";
+        }
+    }
+    cout << "\n\n Press any key to continue....!!";
+    getch();
+    fin.close();
+}
