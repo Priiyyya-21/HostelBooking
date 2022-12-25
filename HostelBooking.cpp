@@ -300,3 +300,47 @@ num:
     getch();
     fin.close();
 }
+
+
+
+void hostel ::Show_Alloted_Rooms()
+{
+    system("cls");
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+    cout << "\n\t\t====================================================== LIST OF ALLOTED ROOMS: ===========================================================";
+    ifstream fin("Record.dat", ios::in);
+    cout << "\n\n Room No.\tName\t\tRollNO\t\tAddress\t\t\tmobile_no No \t\tSemester\t\tCourse\t\tBranch\n";
+
+    while (fin.read((char *)this, sizeof(hostel)))
+    {
+
+        cout << "\n\n " << room_no << "\t\t" << name;
+        cout << "\t\t" << roll_no << "\t\t" << address;
+        cout << "\t" << mobile_no << "\t\t" << semester;
+        cout << "\t\t\t" << course << "\t\t" << branch;
+    }
+    cout << "\n\n\n\t\t\tPress any key to continue.....!!";
+    getch();
+    fin.close();
+}
+
+int hostel ::check(int r)
+{
+
+    int flag = 0;
+    ifstream fin("Record.dat", ios::in);
+
+    while (!fin.eof())
+    {
+        fin.read((char *)this, sizeof(hostel));
+        if (room_no == r)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    fin.close();
+    return (flag);
+}
