@@ -344,3 +344,119 @@ int hostel ::check(int r)
     fin.close();
     return (flag);
 }
+
+void hostel ::bill_generate()
+{
+    system("cls");
+    int dd, mm, yy, r, flag = 0;
+    int grad_fee = 40000, mca_fee = 35000, msc_fee = 34000;
+    static int mess = 16000;
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+    cout << "\n\t\t=========================================================== GENERATE BILL: =============================================================";
+    cout << "Enter the date of the bill" << endl;
+    cin >> dd >> mm >> yy;
+    ifstream rd;
+    rd.open("record.dat", ios::in | ios::binary);
+    cout << "Enter the room number " << endl;
+    cin >> r;
+
+    if (!rd)
+    {
+        cout << "Error opening file.........!" << endl;
+    }
+    else
+    {
+        rd.read((char *)&hos, sizeof(hostel));
+        while (rd)
+        {
+            rd.read((char *)&hos, sizeof(hostel));
+        }
+        if (hos.room_no == r)
+        {
+            system("cls");
+            cout << "\n\t\t****************************************************************************************************************************************";
+            cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+            cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+            cout << "\n================================================== HOSTEL BILL: ========================================================";
+            if (hos.room_no >= 1 && hos.room_no <= 500)
+            {
+                cout << "\n\n\n========================================================================================================================";
+                cout << "\n\tDate:" << dd << "-" << mm << "-" << yy << "\t\t\t\t\t\t\t\t "
+                     << "Bill Number:" << bill_no;
+                ;
+                cout << "\n========================================================================================================================";
+                cout << "\n\n Student Details";
+                cout << "\n ---------------";
+                cout << "\n\n Room no: " << room_no;
+                cout << "\n Name: " << name;
+                cout << "\n Address: " << address;
+                cout << "\n Roll Number : " << roll_no;
+                cout << "\n Semester: " << semester;
+                cout << "\n Branch: " << branch;
+                cout << "\n Course: " << course;
+                cout << "\n\n\t\t YOU ARE ON 0-4 FLOOR ";
+                cout << "\n\n Charges:";
+                cout << "\n --------";
+                cout << "\n Hostel Room Charges: \t\t\t" << grad_fee;
+                cout << "\n Mess Charges: \t\t\t\t" << mess;
+                cout << "\n ------------- ";
+                cout << "\n Total Charges: \t\t\t" << (mess + grad_fee);
+            }
+            else if (hos.room_no >= 501 && hos.room_no <= 600)
+            {
+                cout << "\n\n\n========================================================================================================================";
+                cout << "\n\tDate:" << dd << "-" << mm << "-" << yy << "\t\t\t\t\t\t\t\t "
+                     << "Bill Number:" << bill_no;
+                ;
+                cout << "\n========================================================================================================================";
+                cout << "\n\n Student Details";
+                cout << "\n ---------------";
+                cout << "\n\n Room no: " << room_no;
+                cout << "\n Name: " << name;
+                cout << "\n Address: " << address;
+                cout << "\n Roll Number : " << roll_no;
+                cout << "\n Semester: " << semester;
+                cout << "\n Branch: " << branch;
+                cout << "\n Course: " << course;
+                cout << "\n\n\t\t YOU ARE ON 5TH FLOOR";
+                cout << "\n\n Charges:";
+                cout << "\n --------";
+                cout << "\n Hostel Room Charges: \t\t\t" << mca_fee;
+                cout << "\n Mess Charges: \t\t\t\t" << mess;
+                cout << "\n ------------- ";
+                cout << "\n Total Charges: \t\t\t" << (mess + mca_fee);
+            }
+            else
+            {
+                cout << "\n\n\n========================================================================================================================";
+                cout << "\n\tDate:" << dd << "-" << mm << "-" << yy << "\t\t\t\t\t\t\t\t "
+                     << "Bill Number:" << bill_no;
+                ;
+                cout << "\n========================================================================================================================";
+                cout << "\n\n Student Details";
+                cout << "\n ---------------";
+                cout << "\n\n Room no: " << room_no;
+                cout << "\n Name: " << name;
+                cout << "\n Address: " << address;
+                cout << "\n Roll Number : " << roll_no;
+                cout << "\n Semester: " << semester;
+                cout << "\n Branch: " << branch;
+                cout << "\n Course: " << course;
+                cout << "\n\n\t\t YOU ARE ON 6TH FLOOR";
+                cout << "\n\n Charges:";
+                cout << "\n --------";
+                cout << "\n Hostel Room Charges: \t\t\t" << msc_fee;
+                cout << "\n Mess Charges: \t\t\t\t" << mess;
+                cout << "\n ------------- ";
+                cout << "\n Total Charges: \t\t\t" << (mess + msc_fee);
+            }
+            bill_no++;
+            cout << "\n\n\t\t\t\t\t THANK YOU...!";
+            cout << "\n\n\n========================================================================================================================";
+            flag = 1;
+            getch();
+        }
+    }
+}
