@@ -498,3 +498,122 @@ void hostel ::edit_menu()
         }
     } while (choice != 3);
 }
+
+void hostel::modify()
+{
+    system("cls");
+    int pos, flag = 0, r;
+    char space[10];
+    fstream file("Record.dat", ios::in | ios::out | ios::binary);
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+    cout << "\n\t\t================================================================ MODIFY RECORD MENU: ===================================================\n\n\n";
+    cout << "\n\n Enter room no: ";
+    cin >> r;
+
+    while (!file.eof())
+    {
+
+        pos = file.tellg();
+        file.read((char *)this, sizeof(hostel));
+        if (room_no == r)
+        {
+            cout << "\n Enter New Details";
+            cout << "\n -----------------";
+            gets(space);
+            cout << " Name: ";
+            gets(name);
+            cout << " Course: ";
+            gets(course);
+            cout << " Branch: ";
+            gets(branch);
+            cout << " Semester: ";
+            gets(semester);
+            cout << " Address: ";
+            gets(address);
+            cout << " Roll number: ";
+            cin >> roll_no;
+            cout << " mobile_no Number: ";
+            cin >> mobile_no;
+            file.seekp(pos);
+            file.write((char *)this, sizeof(hostel));
+            cout << "\n\n\t\t Record is modified....!!";
+            cout << "\n\n Updated details are:";
+            cout << "\n\n Room no: " << room_no;
+            cout << "\n Name: " << name;
+            cout << "\n Address: " << address;
+            cout << "\n Roll Number : " << roll_no;
+            cout << "\n Semester: " << semester;
+            cout << "\n Branch: " << branch;
+            cout << "\n Course: " << course;
+
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 0)
+    {
+        cout << "\n Sorry Room found vacant...!!";
+    }
+    file.close();
+}
+
+void hostel::delete_room()
+{
+    system("cls");
+    int flag = 0, r;
+    char ch;
+    ifstream fin("Record.dat", ios::in);
+    ofstream fout("temp.dat", ios::out);
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+    cout << "\n\t\t======================================================== DELETE STUDENT ROOM MENU: ==========================================================\n\n";
+    cout << "\n\n Enter room no: ";
+    cin >> r;
+
+    while (fin.read((char *)this, sizeof(hostel)))
+    {
+        if (room_no == r)
+        {
+
+            cout << "\n\n Room no: " << room_no;
+            cout << "\n Name: " << name;
+            cout << "\n Address: " << address;
+            cout << "\n Roll Number : " << roll_no;
+            cout << "\n Semester: " << semester;
+            cout << "\n Branch: " << branch;
+            cout << "\n Course: " << course;
+            cout << "\n\n Do you want to delete this record(y/n): ";
+            cin >> ch;
+            if (ch == 'y')
+            {
+                cout << "\t\t\t\t\tYour record is deleted. ";
+                flag = 1;
+            }
+            else
+            {
+                cout << "\n\n\t\t\tRecord not deleted....";
+                cout << "\n\t\t\t Press any key to continue....!!!";
+                getch();
+            }
+        }
+        else
+        {
+            fout.write((char *)this, sizeof(hostel));
+        }
+    }
+    fin.close();
+    fout.close();
+    if (flag == 0)
+    {
+        cout << "\t\tSorry room not found vacant......!!!!! " << endl;
+    }
+    else
+    {
+        remove("Record.dat");
+        rename("temp.dat", "Record.dat");
+    }
+}
+
