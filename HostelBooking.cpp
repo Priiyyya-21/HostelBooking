@@ -617,3 +617,47 @@ void hostel::delete_room()
     }
 }
 
+
+
+
+
+
+
+
+bool hostel::check_digit(string x)
+{
+    if (x.length() == 10)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+int main()
+{
+    int pass;
+    hostel hos;
+    system("cls");
+    cout << "\n\t\t****************************************************************************************************************************************";
+    cout << "\n\t\t*                                          WELCOME TO HOSTEL J BOOKING PORTAL                                                          *";
+    cout << "\n\t\t****************************************************************************************************************************************\n\n\n";
+wrong:
+{
+    cout << "\n\n\n\t\t\t\t\t  ENTER ADMIN PASSWORD :";
+    cin >> pass;
+    if (pass == 171890)
+    {
+        hos.main_menu();
+    }
+
+    else
+    {
+        cout << "\n\n\t\t\t\t\t wrong password try again :::::";
+        goto wrong;
+    }
+}
+    return 0;
+}
